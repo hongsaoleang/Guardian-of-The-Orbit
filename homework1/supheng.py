@@ -1,12 +1,17 @@
 
-battery_level = 18.2
-time_remaining = 24.5
-dist_to_goal = 1.1
+import random
 
-if time_remaining < 30:
-    print("[CRITICAL] Low time remaining -> Abort to Goal Checkpoint")
-elif battery_level < 20.0:
-    print("[WARNING] Low Battery -> Transition to conservation velocity")
-else:
-    print("[NOMINAL] Proceed to next inspection checkpoint.")
+battery = 100.0
 
+for waypoint in range(1, 11):
+    print(f"Approaching waypoint {waypoint}...")
+    
+    drain = random.uniform(1.5, 3.5)
+    battery -= drain
+    print(f"Current Battery: {battery:.2f}%")
+    
+    if battery < 75.0:
+        print("[EMERGENCY RETURN TRIGGERED]")
+        break
+    elif battery < 80.0:
+        print("Caution: Battery has dropped below 80%!")
